@@ -32,6 +32,11 @@ git commit -m "[commit-message]"
 git push origin [branch-name]
 ```
 
+#### Step3: branchをmerge
+
+#### Step4: 異なる端末からbranchで編集
+
+
 ## Snippets
 ```
 git log --oneline --graph
