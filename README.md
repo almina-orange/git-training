@@ -1,5 +1,5 @@
 # README: git-training
----
+
 ## Introduction
 - GitHubのトレーニング用リポジトリ
 - GitHubの基本的な使い方もメモ
@@ -31,7 +31,6 @@ git commit -m "[commit-message]"
 git push origin [branch-name]
 ```
 
----
 ## Reference
 - Qiita - GitHub 入門
   https://qiita.com/ay3/items/8d758ebde41d256a32dc
