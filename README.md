@@ -35,3 +35,5 @@ git push origin [branch-name]
 ## Reference
 - Qiita - GitHub 入門
   https://qiita.com/ay3/items/8d758ebde41d256a32dc
+- Qiita - 基本的なGitコマンドまとめ
+  https://qiita.com/2m1tsu3/items/6d49374230afab251337
