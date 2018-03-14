@@ -61,6 +61,9 @@ git push origin [branch-name(or master)]
 - branchが何なのかは調べること
 
 ```
+# 現在のbranchを確認（基本は"master"）
+git branch
+
 # branchを作成，branchの切り替え
 git brance [brance-name]
 git checkout [branch-name]
@@ -75,13 +78,32 @@ git push origin [branch-name]
 ```
 
 #### Step3: branchをmerge
+- 編集をmaster branchに反映させる
+- 編集が完了したら行う
+
+```
+# master branchで操作
+git checkout master
+git merge [branch-name]
+
+# mergeされたことを確認
+git log
+git status
+
+# 再びmasterをpush
+git push origin master
+
+# 必要がなければbranchを削除
+git branch -d [branch-name]
+git push origin :[branch-name]
+```
 
 #### Step4: 異なる端末からbranchで編集
 
 
 ## Snippets
 ```
-git log --oneline --graph
+git log --oneline --graph    # ログをグラフ状かつ簡略表示
 ```
 
 ---
