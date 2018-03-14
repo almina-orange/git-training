@@ -51,7 +51,7 @@ echo "# README" >> README.md
 git status
 git add README.md
 git commit -m "[commit-message]"
-git push origin [branch-name(or master)]
+git push origin [branch(or master)]
 
 ... GitHubで反映されていることを確認 ...
 ```
@@ -65,8 +65,8 @@ git push origin [branch-name(or master)]
 git branch
 
 # branchを作成，branchの切り替え
-git brance [brance-name]
-git checkout [branch-name]
+git brance [brance]
+git checkout [branch]
 
 ... edit files ...
 
@@ -74,7 +74,7 @@ git checkout [branch-name]
 git status
 git add .
 git commit -m "[commit-message]"
-git push origin [branch-name]
+git push origin [branch]
 ```
 
 #### Step3: branchをmerge
@@ -84,7 +84,7 @@ git push origin [branch-name]
 ```
 # master branchで操作
 git checkout master
-git merge [branch-name]
+git merge [branch]
 
 # mergeされたことを確認
 git log
@@ -94,17 +94,37 @@ git status
 git push origin master
 
 # 必要がなければbranchを削除
-git branch -d [branch-name]
-git push origin :[branch-name]
+git branch -d [branch]
+git push origin :[branch]
 ```
 
 #### Step4: 異なる端末からbranchで編集
+- 必ず同期を行うように（`git pull origin [branch]`）
+
+```
+# 編集した分をbranchに反映する
+git pull origin [branch]
+
+... edit files ...
+
+git status
+git add .
+git commit -m "[commit-message]"
+git push origin [branch]
+```
 
 
 ## Snippets
 ```
 git log --oneline --graph    # ログをグラフ状かつ簡略表示
 ```
+
+## Memo
+- `pull`と`fetch + merge`がよく分かってない
+- 基本的な扱い方がこれでいいのかも微妙
+  - 基本はmasterを編集すべきなのか？
+  - 異なる端末で同じbranchを扱うのは不自然？
+  - branchを切るタイミングとかがよく理解できてない気がする
 
 ---
 ## Reference
