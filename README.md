@@ -100,6 +100,7 @@ git push origin :[branch]
 
 #### Step4: 異なる端末からbranchで編集
 - 必ず同期を行うように（`git pull origin [branch]`）
+- 基本的には，「作業前に`pull [branch]`」「作業後に`push [branch]`」でいいと思う
 
 ```
 # 編集した分をbranchに反映する
@@ -116,10 +117,21 @@ git push origin [branch]
 
 ## Snippets
 ```
-git log --oneline --graph    # ログをグラフ状かつ簡略表示
+# ログをグラフ状かつ簡略表示
+git log --oneline --graph
+
+# commit情報の表示
+git show HEAD    # 最新
+git show HEAD^^2    # 最新から２つ前
+
+# commitの取り消し
+reset
 ```
 
 ## Memo
+- Atomを是非とも使おう
+  - 元々AtomはGitHubが作ったeditor，GitHubとの連携はお手の物
+  - 例えば`git checkout [branch]`すると，勝手にAtomが`[branch]`でのファイルに切り替えてくれる
 - `pull`と`fetch + merge`がよく分かってない
 - 基本的な扱い方がこれでいいのかも微妙
   - 基本はmasterを編集すべきなのか？
@@ -132,3 +144,5 @@ git log --oneline --graph    # ログをグラフ状かつ簡略表示
   https://qiita.com/ay3/items/8d758ebde41d256a32dc
 - Qiita - 基本的なGitコマンドまとめ
   https://qiita.com/2m1tsu3/items/6d49374230afab251337
+- KRAY Inc - Git初心者に捧ぐ！Gitの「これなんで？」を解説します
+  http://kray.jp/blog/git-why-explanation/
