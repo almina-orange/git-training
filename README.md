@@ -3,7 +3,7 @@
 ## Introduction
 - GitHubのトレーニング用repository
 - GitHubの基本的な使い方もメモ（詳しくは逐次調べる）
-- GitLubでも応用できるはず（多分）
+- GitLabでも応用できるはず（多分）
 
 
 ## What is GitHub?
