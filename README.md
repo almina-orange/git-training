@@ -102,9 +102,16 @@ git push origin :[branch-name]
 
 
 ## Snippets
-```
-git log --oneline --graph    # ログをグラフ状かつ簡略表示
-```
+- ログをグラフ状に20行，かつ簡略表示する
+
+    ```bash
+    $ git log --oneline --graph --decorate -20
+    ```
+- 特定のbranchのみクローンする
+
+    ```bash
+    $ git clone -b [branch] [URL]
+    ```
 
 ---
 ## Reference
