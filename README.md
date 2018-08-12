@@ -15,7 +15,7 @@
 
 ## Training
 ### Step0: 基本の設定
-GitHubにログインできることを前提とする．
+GitHubにログインできることを前提とする
 
 1. GitHub上でremote repositoryを作成．
     - アカウントページを開く（`https://github.com/[user]`）
@@ -26,22 +26,25 @@ GitHubにログインできることを前提とする．
     - `Initialize this repository with a README`をチェックすると，自動で`README.md`を作ってくれる
     - `Create repository`をクリックし，repositoryを作成
 
-2. gitコマンドが使えることを確認．（入っていない場合はインストールする）
+2. gitコマンドが使えることを確認（入っていない場合はインストールする）
 
     ```bash
     $ git --version
     ```
-3. remote repositoryとディレクトリ（local repository）を連携．
+
+3. remote repositoryとディレクトリ（local repository）を連携
     - ディレクトリにlocal repositoryを作成
 
         ```bash
         $ git init
         ```
+
     - remote repositoryを登録（`origin`という名前をつけている）
 
         ```bash
         $ git remote origin https://github.com/[user]/[repository]
         ```
+
     - configを設定（`.git/config`で直接編集も可能）
 
         ```bash
@@ -49,9 +52,12 @@ GitHubにログインできることを前提とする．
         $ git config --global user.email [address]
         $ git config --list
         ```
+- Note
+    > remote reporitory が作勢済みな場合は `git clone [$URL]` を使っても問題ない
+    > 逐一 local repository を別に作らなくても良い
 
 ### Step1: GitHubにファイルをpushする
-編集したファイルをGitHubへ反映する手順（GitHubへの保存方法）．
+編集したファイルをGitHubへ反映する手順（GitHubへの保存方法）
 
 ```bash
 ... GitHubで新しいrepositoryを作成 ...
@@ -73,9 +79,9 @@ $ git push origin [branch(or master)]
 ```
 
 ### Step2: branchを切って編集
-- ファイルを編集するときの基本的な手順．
-- 編集する場合は必ずbranchを切る．
-- branch名は，Git-flowを参考にする．
+- ファイルを編集するときの基本的な手順
+- 編集する場合は必ずbranchを切る
+- branch名は，Git-flowを参考にする
 
 ```bash
 # 現在のbranchを確認（基本は"master"）
@@ -104,11 +110,11 @@ $ git push origin [branch]
 ```
 
 ### Step3: branchをmasterにmerge
-編集を`master`に統合させる．
-基本的には，`[branch]`での編集が完了した後に行う．
-branch同士の衝突（conflict）に注意すること．
+- 編集を`master`に統合させる
+- 基本的には編集が完了した後に行う
+- branch の衝突（conflict）に注意すること
 
-- CLI上で行う場合
+#### CLI上で行う場合
 
 ```bash
 # masterで操作
@@ -127,16 +133,16 @@ $ git branch -d [branch]
 $ git push origin :[branch]
 ```
 
-- GUI（GitHub）上で行う場合
-    1. `Pull Request`をクリック
-    2. コメントを書いてリクエストを送信
-    3. リクエストを受けた側は，リクエスト内容を確認した上でmergeする
+#### GUI（GitHub）上で行う場合
+1. `Pull Request`をクリック
+2. コメントを書いてリクエストを送信
+3. リクエストを受けた側は，リクエスト内容を確認した上でmergeする
 
 ### Step4: 異なる端末からbranchで編集
-- 異なる端末間の同期の手順．
-- 必ず同期を行ってから編集を行うこと（衝突の原因になる）．
-- 基本的には「作業前に`pull [branch]`」「作業後に`push [branch]`」でいい．
-- 以下の手順は，違うディレクトリを作って別々に編集し，同期を試してみると良い．
+- 異なる端末間の同期の手順
+- 必ず同期を行ってから編集を行うこと（衝突の原因になる）
+- 基本的には「作業前に`pull [branch]`」「作業後に`push [branch]`」でいい
+- 以下の手順は，違うディレクトリを作って別々に編集し，同期を試してみると良い
 
 ```bash
 # 作業用branchに入る
@@ -154,23 +160,47 @@ $ git commit -m "[message]"
 $ git push origin [branch]
 ```
 
-- 補足: 異なる端末からの作業の始め方のススメ
+- Note: 異なる端末からの作業の始め方のススメ
     - 既にGitHub上にrepositoryがあることを想定する
     - また作業用branchがある場合を想定する
 
-```bash
-# remoteをlocalに落とす
-$ git clone https://github.com/[user]/[repository].git
-$ cd [repository]
+    ```bash
+    # remoteをlocalに落とす
+    $ git clone https://github.com/[user]/[repository].git
+    $ cd [repository]
 
-# 作業用branchがあれば引っ張ってくる
-# （remote上のbranch（origin/[branch]）をlocalの[branch]に反映させる）
-$ git checkout -b [branch] origin/[branch]
+    # 作業用branchがあれば引っ張ってくる
+    # （remote上のbranch（origin/[branch]）をlocalの[branch]に反映させる）
+    $ git checkout -b [branch] origin/[branch]
+    ```
+
+### Step5: 他人のリポジトリを自分のワークスペースへコピー
+- `git clone` --> `git push`は薦めない
+    - remote のURLを直す必要があるから
+    - commit log までそのまま引き継がれてしまうから
+- `mirror`オプションを利用して，中身をそのままに自分のリポジトリとして扱う
+
+```bash
+# ローカルの複製先ディレクトリに移動
+$ cd [$CP_DIR]
+
+# 複製元のリモートリポジトリを複製
+$ git clone --mirror [$URL]
+
+# リモート先のURLを修正
+$ git remote set-url origin [$URL]
+
+# 複製先に push する
+$ cd .git
+$ git push --mirror [$URL]
+
+# 複製元のディレクトリを削除して再度 clone する
+$ rm -rf [$CP_DIR]
+$ git clone [$URL]
 ```
 
-
 ## Snippets
-役に立ちそうなコマンド集．
+役に立ちそうなコマンド集
 
 - ログをグラフ状に20行，かつ簡略表示
 
@@ -236,3 +266,4 @@ $ git checkout -b [branch] origin/[branch]
 - [KRAY Inc - Git初心者に捧ぐ！Gitの「これなんで？」を解説します](http://kray.jp/blog/git-why-explanation/)
 - [サルでもわかるGit入門](https://backlog.com/ja/git-tutorial/)
 - [git初心者への道 - お仕事で困らないレベルまでググっとします。 - GitHub](https://gist.github.com/yatemmma/6486028)
+- gitリポジトリの複製 - Qiita, [https://qiita.com/syuji-higa/items/e380289502c7896daf0f](https://qiita.com/syuji-higa/items/e380289502c7896daf0f)
